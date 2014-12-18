@@ -1,0 +1,48 @@
+<cj-api>
+    <commissions total-matched="2">
+        <commission>
+            <action-status>closed</action-status>
+            <action-type>advanced sale</action-type>
+            <aid>10451141</aid>
+            <commission-id>1749668435</commission-id>
+            <country>US</country>
+            <event-date>2014-06-23T14:10:24-0700</event-date>
+            <locking-date>2014-07-23</locking-date>
+            <order-id>20705742</order-id>
+            <original>false</original>
+            <original-action-id>1479955304</original-action-id>
+            <posting-date>2014-07-22T13:32:16-0700</posting-date>
+            <website-id>7346500</website-id>
+            <action-tracker-id>311334</action-tracker-id>
+            <action-tracker-name>Advance Sale-Online Purchase</action-tracker-name>
+            <cid>1892004</cid>
+            <advertiser-name>Shopbop</advertiser-name>
+            <commission-amount>-33.80</commission-amount>
+            <order-discount>0.00</order-discount>
+            <sid>13</sid>
+            <sale-amount>-225.30</sale-amount>
+        </commission>
+        <commission>
+            <action-status>closed</action-status>
+            <action-type>advanced sale</action-type>
+            <aid>10451141</aid>
+            <commission-id>1754653949</commission-id>
+            <country>US</country>
+            <event-date>2014-08-06T12:46:02-0700</event-date>
+            <locking-date>2014-09-05</locking-date>
+            <order-id>21179223</order-id>
+            <original>true</original>
+            <original-action-id>1493293329</original-action-id>
+            <posting-date>2014-08-06T13:31:14-0700</posting-date>
+            <website-id>7346500</website-id>
+            <action-tracker-id>311334</action-tracker-id>
+            <action-tracker-name>Advance Sale-Online Purchase</action-tracker-name>
+            <cid>1892004</cid>
+            <advertiser-name>Shopbop</advertiser-name>
+            <commission-amount>6.09</commission-amount>
+            <order-discount>0.00</order-discount>
+            <sid>13</sid>
+            <sale-amount>40.60</sale-amount>
+        </commission>
+    </commissions>
+</cj-api>
