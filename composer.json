@@ -14,5 +14,11 @@
             "email": "ian@nmrkt.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Nmrkt\\CommissionJunction": "src/",
+            "Nmrkt\\Tests\\CommissionJunction": "tests/"
+        }
+    }
 }
