@@ -23,9 +23,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     protected $auth_token = 'fake_de_token_for_de_testing';
 
+    protected $subdomain = 'commission-detail';
+
     public function setup()
     {
-        $this->cj_client = new Client($this->auth_token);
+        $this->cj_client = new Client($this->auth_token, $this->subdomain);
         //setup history subscriber
         $this->cj_client->getEmitter()->attach($this->getHistoryObject());
 
@@ -44,6 +46,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         return $this->mock_response_object;
     }
 
+    /**
+     * @return History request history subscriber
+     */
     protected function getHistoryObject()
     {
         if (!is_a($this->request_history_object, 'GuzzleHttp\Subscriber\History')) {
@@ -54,6 +59,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         return $this->request_history_object;
     }
 
+    /**
+     * Adds a mock repsonse to the response queue
+     *
+     * @param \GuzzleHttp\Stream\Stream $data Stream data object
+     * @param int $response_code desired response code
+     */
     protected function addClientMock($data, $response_code = 200)
     {
         //create a response with the data and response code
@@ -64,11 +75,16 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $mock_response->addResponse($api_response);
     }
 
-
-
     public function testClientIsGuzzleClient()
     {
         $this->assertTrue(is_a($this->cj_client, 'GuzzleHttp\Client'));
     }
-    
+
+    public function testBaseUrlIsSetCorrectly()
+    {
+        $baseUrl = $this->cj_client->getBaseUrl();
+
+        $this->assertEquals('https://commission-detail.api.cj.com/v3', $baseUrl);
+    }
+
 }
