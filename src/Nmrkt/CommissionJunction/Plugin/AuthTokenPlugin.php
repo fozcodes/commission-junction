@@ -9,12 +9,13 @@
 namespace Nmrkt\CommissionJunction\Plugin;
 
 use GuzzleHttp\Event\EmitterInterface;
+use GuzzleHttp\Event\ErrorEvent;
 use GuzzleHttp\Event\SubscriberInterface;
 use GuzzleHttp\Event\BeforeEvent;
 use GuzzleHttp\Event\CompleteEvent;
 
 
-class AuthTokenPlugin extends SubscriberInterface
+class AuthTokenPlugin implements  SubscriberInterface
 {
     private $auth_token;
 
@@ -23,4 +24,29 @@ class AuthTokenPlugin extends SubscriberInterface
         $this->auth_token = $auth_token;
     }
 
+    public function getEvents()
+    {
+        return [
+            // Provide name and optional priority
+            'before'   => ['onBefore', 'first'],
+            // You can pass a list of listeners with different priorities
+            'error'    => [['beforeError', 'first'], ['afterError', 'last']]
+        ];
+    }
+
+    public function onBefore(BeforeEvent $event, $name)
+    {
+        //add the authorization header
+        $event->getRequest()->addHeader('authorization', $this->auth_token);
+    }
+
+    public function beforeError(ErrorEvent $event)
+    {
+
+    }
+
+    public function afterError(ErrorEvent $event)
+    {
+
+    }
 }

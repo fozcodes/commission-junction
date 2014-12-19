@@ -9,6 +9,7 @@
 namespace Nmrkt\CommissionJunction;
 
 use GuzzleHttp\Client as GuzzleClient;
+use Nmrkt\CommissionJunction\Plugin\AuthTokenPlugin;
 
 class Client extends GuzzleClient
 {
@@ -20,7 +21,7 @@ class Client extends GuzzleClient
 
 		parent::__construct();
 
-//		$this->addSubscriber(new TokenAuthPlugin($auth_token));
+		$this->getEmitter()->attach(new AuthTokenPlugin($auth_token));
 //		$this->addSubscriber(new ArrayAggregatorSubscriber());
 //		$this->addSubscriber(new ResponseStandardizationSubscriber());
 
