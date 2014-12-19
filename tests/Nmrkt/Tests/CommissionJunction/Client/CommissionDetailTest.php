@@ -26,7 +26,4 @@ class CommissionDetailTest extends ClientTestCase
 
         $this->assertEquals('https://commission-detail.api.cj.com/v3', $base_url);
     }
-
-
-
 }

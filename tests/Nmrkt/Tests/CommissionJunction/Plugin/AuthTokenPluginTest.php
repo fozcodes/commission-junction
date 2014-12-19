@@ -23,7 +23,9 @@ class AuthTokenPluginTest extends ClientTestCase
     private function recurseForMethodName($event, $plugin)
     {
         if (is_array($event[0])) {
-            $this->recurseForMethodName($event[0], $plugin);
+            foreach($event as $e) {
+                $this->recurseForMethodName($e, $plugin);
+            }
         } else {
             $this->assertTrue(method_exists($plugin, $event[0]), $event[0] . ' method does not exist');
         }
