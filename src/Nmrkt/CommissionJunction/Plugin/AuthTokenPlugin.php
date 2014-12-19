@@ -8,11 +8,9 @@
 
 namespace Nmrkt\CommissionJunction\Plugin;
 
-use GuzzleHttp\Event\EmitterInterface;
 use GuzzleHttp\Event\ErrorEvent;
 use GuzzleHttp\Event\SubscriberInterface;
 use GuzzleHttp\Event\BeforeEvent;
-use GuzzleHttp\Event\CompleteEvent;
 
 
 class AuthTokenPlugin implements  SubscriberInterface
