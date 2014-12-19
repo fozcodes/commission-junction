@@ -9,4 +9,4 @@ php:
 install:
 - composer install --prefer-source --dev
 
-script: bin/phpunit
+script: vendor/bin/phpunit
