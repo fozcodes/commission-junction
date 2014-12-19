@@ -70,13 +70,5 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_a($this->cj_client, 'GuzzleHttp\Client'));
     }
-
-    public function testAuthTokenIsAddedToRequest()
-    {
-//        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/commission-detail-response.xml', 'r')));
-//
-//
-//        $this->assertEquals($command->prepare()->getQuery()->get('authorization'), $this->auth_token);
-
-    }
+    
 }
