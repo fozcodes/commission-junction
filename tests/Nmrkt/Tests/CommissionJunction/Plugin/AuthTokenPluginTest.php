@@ -9,10 +9,10 @@
 
 namespace Nmrkt\Tests\CommissionJunction\Plugin;
 
-use Nmrkt\Tests\CommissionJunction\ClientTest as CjClientTest;
+use Nmrkt\Tests\ClientTestCase;
 use Nmrkt\CommissionJunction\Plugin\AuthTokenPlugin as Plugin;
 
-class AuthTokenPluginTest extends CjClientTest
+class AuthTokenPluginTest extends ClientTestCase
 {
 
     public function setup()

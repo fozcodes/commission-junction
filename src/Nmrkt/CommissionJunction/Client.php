@@ -13,12 +13,10 @@ use Nmrkt\CommissionJunction\Plugin\AuthTokenPlugin;
 
 class Client extends GuzzleClient
 {
-
 	private $base_url = "https://%s.api.cj.com/%s";
 
 	public function __construct($auth_token, $subdomain, $version = 'v3')
 	{
-
 
 		parent::__construct([
 			'base_url' => sprintf($this->base_url, $subdomain, $version),
@@ -27,7 +25,4 @@ class Client extends GuzzleClient
 		$this->getEmitter()->attach(new AuthTokenPlugin($auth_token));
 
 	}
-
-
-
 }

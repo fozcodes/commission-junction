@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: ian
- * Date: 12/18/14
- * Time: 1:33 PM
+ * Date: 12/19/14
+ * Time: 4:17 PM
  */
 
-namespace Nmrkt\Tests\CommissionJunction;
+namespace Nmrkt\Tests;
 
-use Nmrkt\CommissionJunction\Client as Client;
+use Nmrkt\CommissionJunction\Client;
 use GuzzleHttp\Subscriber\Mock;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Subscriber\History;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+abstract class ClientTestCase extends \PHPUnit_Framework_TestCase
 {
     protected $cj_client;
 
@@ -23,7 +23,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     protected $auth_token = 'fake_de_token_for_de_testing';
 
-    protected $subdomain = 'commission-detail';
+    protected $subdomain = 'subdomain';
 
     public function setup()
     {
@@ -73,18 +73,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $mock_response = $this->getMockObject();
         $mock_response->addResponse($api_response);
-    }
-
-    public function testClientIsGuzzleClient()
-    {
-        $this->assertTrue(is_a($this->cj_client, 'GuzzleHttp\Client'));
-    }
-
-    public function testBaseUrlIsSetCorrectly()
-    {
-        $baseUrl = $this->cj_client->getBaseUrl();
-
-        $this->assertEquals('https://commission-detail.api.cj.com/v3', $baseUrl);
     }
 
 }
