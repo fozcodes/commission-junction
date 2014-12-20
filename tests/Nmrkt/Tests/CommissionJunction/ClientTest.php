@@ -32,7 +32,7 @@ class ClientTest extends ClientTestCase
 
         $baseUrl = $this->cj_client->getBaseUrl();
 
-        $this->assertEquals('https://somesubdomain.api.cj.com/v3', $baseUrl);
+        $this->assertEquals('https://somesubdomain.api.cj.com/v3/', $baseUrl);
     }
 
     public function testExceptionIsThrownOnErrorResponse()

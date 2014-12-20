@@ -16,7 +16,14 @@ class CommissionDetail extends CJClient
 
     public function __construct($auth_token)
     {
-        parent::__construct($auth_token, self::SUBDOMAIN);
+        parent::__construct($auth_token, self::SUBDOMAIN, 'v3');
+    }
+
+    public function getPostings($params = [])
+    {
+        $this->get('commissions?date-type=posting', [
+            'query' => $params
+        ]);
     }
 
 }
