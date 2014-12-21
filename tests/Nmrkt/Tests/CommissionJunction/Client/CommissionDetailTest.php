@@ -27,7 +27,7 @@ class CommissionDetailTest extends ClientTestCase
         $this->assertEquals('https://commission-detail.api.cj.com/v3/', $base_url);
     }
 
-    public function testEventSetsFullRequestCorrectly()
+    public function testGetPostingsSetsFullRequestCorrectly()
     {
         //add the mock to fake a response
         $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/commission-detail-response.xml', 'r')));
@@ -49,4 +49,55 @@ class CommissionDetailTest extends ClientTestCase
         $this->assertEquals('https://commission-detail.api.cj.com/v3/commissions?date-type=posting&start-date=2014-08-15&end-date=2014-08-16', $request->getUrl());
 
     }
+
+    public function testGetPostingsReturnsSimpleXmlElement()
+    {
+        //add the mock to fake a response
+        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/commission-detail-response.xml', 'r')));
+
+        //get the mocked subscriber from parent and attach
+        $this->cj_client->getEmitter()->attach($this->getMockObject());
+
+        $postings = $this->cj_client->getPostings();
+
+        $this->assertTrue(is_a($postings, 'SimpleXmlElement'));
+    }
+
+    public function testGetEventsSetsFullRequestCorrectly()
+    {
+        //add the mock to fake a response
+        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/commission-detail-response.xml', 'r')));
+
+        //get the mocked subscriber from parent and attach
+        $this->cj_client->getEmitter()->attach($this->getMockObject());
+
+        $params = [
+            'start-date' => '2014-08-15',
+            'end-date' => '2014-08-16'
+        ];
+
+        $postings = $this->cj_client->getEvents($params);
+
+        $history = $this->getHistoryObject();
+
+        $request = $history->getLastRequest();
+
+        $this->assertEquals('https://commission-detail.api.cj.com/v3/commissions?date-type=event&start-date=2014-08-15&end-date=2014-08-16', $request->getUrl());
+
+    }
+
+    public function testGetEventsReturnsSimpleXmlElement()
+    {
+        //add the mock to fake a response
+        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/commission-detail-response.xml', 'r')));
+
+        //get the mocked subscriber from parent and attach
+        $this->cj_client->getEmitter()->attach($this->getMockObject());
+
+        $postings = $this->cj_client->getEvents();
+
+        $this->assertTrue(is_a($postings, 'SimpleXmlElement'));
+    }
+
+
 }

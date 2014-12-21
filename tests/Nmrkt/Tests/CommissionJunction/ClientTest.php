@@ -11,6 +11,7 @@ namespace Nmrkt\Tests\CommissionJunction;
 use Nmrkt\CommissionJunction\Client as Client;
 use Nmrkt\Tests\ClientTestCase;
 use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\ClientException;
 
 class ClientTest extends ClientTestCase
 {
@@ -45,6 +46,23 @@ class ClientTest extends ClientTestCase
         try {
             $this->cj_client->get('/');
         } catch ( ServerException $expected ) {
+            return;
+        }
+
+        $this->fail('An expected exception has not been raised.');
+    }
+
+
+    public function testExceptionIsThrownOnBadRequestResponse()
+    {
+
+        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/commission-detail-response.xml', 'r')), 400);
+
+        $this->cj_client->getEmitter()->attach($this->getMockObject());
+
+        try {
+            $this->cj_client->get('/');
+        } catch ( ClientException $expected ) {
             return;
         }
 

@@ -21,9 +21,20 @@ class CommissionDetail extends CJClient
 
     public function getPostings($params = [])
     {
-        $this->get('commissions?date-type=posting', [
+        $response = $this->get('commissions?date-type=posting', [
             'query' => $params
         ]);
+
+        return $response->xml();
+    }
+
+    public function getEvents($params = [])
+    {
+        $response = $this->get('commissions?date-type=event', [
+            'query' => $params
+        ]);
+
+        return $response->xml();
     }
 
 }
