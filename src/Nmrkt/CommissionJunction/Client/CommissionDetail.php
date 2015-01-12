@@ -37,4 +37,11 @@ class CommissionDetail extends CJClient
         return $response->xml();
     }
 
+    public function getItemDetail($original_action_id)
+    {
+        $response = $this->get('item-detail/' . $original_action_id);
+
+        return $response->xml();
+    }
+
 }

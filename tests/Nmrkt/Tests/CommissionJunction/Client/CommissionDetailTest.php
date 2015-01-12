@@ -100,4 +100,40 @@ class CommissionDetailTest extends ClientTestCase
     }
 
 
+    public function testGetItemDetailSetsFullRequestCorrectly()
+    {
+        //add the mock to fake a response
+        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/item-detail-response.xml', 'r')));
+
+        //get the mocked subscriber from parent and attach
+        $this->cj_client->getEmitter()->attach($this->getMockObject());
+
+        $original_action_id = 1537520;
+
+        $item_info = $this->cj_client->getItemDetail($original_action_id);
+
+        $history = $this->getHistoryObject();
+
+        $request = $history->getLastRequest();
+
+        $this->assertEquals('https://commission-detail.api.cj.com/v3/item-detail/' . $original_action_id, $request->getUrl());
+
+    }
+
+    public function testGetItemDetailReturnsSimpleXmlElement()
+    {
+        //add the mock to fake a response
+        $this->addClientMock(new \GuzzleHttp\Stream\Stream(fopen(RESOURCE_PATH . '/item-detail-response.xml', 'r')));
+
+        //get the mocked subscriber from parent and attach
+        $this->cj_client->getEmitter()->attach($this->getMockObject());
+
+        $original_action_id = 1537520;
+
+        $item_info = $this->cj_client->getItemDetail($original_action_id);
+
+        $this->assertTrue(is_a($item_info, 'SimpleXmlElement'));
+    }
+
+
 }
